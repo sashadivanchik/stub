@@ -13,7 +13,7 @@ function createAnalytics() {
         },
         getClicks() {
             if ( destroyed ) {
-                return `Analytics is destroyed. Total clicks = ${counter}`;
+                return `Analytics is destroyed. Total clicks = ${counter}!`;
             }
             return counter;
         }
