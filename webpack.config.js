@@ -14,12 +14,18 @@ module.exports = {
         filename: '[name].js',
         path: path.resolve(__dirname, 'build'),
     },
+    resolve: {
+        extensions: ['.js']
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
         new CleanWebpackPlugin()
     ],
+    devServer: {
+        port: 8080
+    },
     module: {
         rules: [
             {
