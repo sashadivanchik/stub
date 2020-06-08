@@ -76,8 +76,8 @@ module.exports = {
             ]
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].css'
-        })
+            filename: 'css/[name].css'
+        }),
     ],
     devServer: {
         port: 8080,
