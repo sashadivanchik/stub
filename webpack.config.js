@@ -17,7 +17,7 @@ const optimization = () => {
         }
     }
 
-    if(isProd) {
+    if (isProd) {
         config.minimizer = [
             new OptimizeCSSAssetsPlugin(),
             new TerserJSPlugin()
@@ -27,11 +27,29 @@ const optimization = () => {
     return config;
 };
 
+const cssLoaders = (extra) => {
+    const loaders = [
+        {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+                hmr: isDev,
+                reloadAll: true
+            }
+        },
+        'css-loader'
+    ]
+
+    if (extra) {
+        loaders.push(extra)
+    }
+
+    return loaders;
+};
+
 module.exports = {
     mode: 'development',
     entry: {
         main: './src/index.js',
-        analytics: './src/analytics.js'
     },
     output: {
         filename: '[name].js',
@@ -65,34 +83,16 @@ module.exports = {
         port: 8080,
         hot: isDev
     },
+    devtool: isDev ? 'source-map' : '',
     module: {
         rules: [
             {
                 test: /\.css$/, 
-                use: [
-                        {
-                            loader: MiniCssExtractPlugin.loader,
-                            options: {
-                                hmr: isDev,
-                                reloadAll: true
-                            }
-                        },
-                        'css-loader'
-                ],              
+                use: cssLoaders()           
             },
             {
                 test: /\.s[ac]ss$/, 
-                use: [
-                        {
-                            loader: MiniCssExtractPlugin.loader,
-                            options: {
-                                hmr: isDev,
-                                reloadAll: true
-                            }
-                        },
-                        'css-loader',
-                        'sass-loader'
-                ],              
+                use: cssLoaders('sass-loader')      
             },
             {
                 test: /\.(png|jpe?g|gif|svg|ico)$/i,
