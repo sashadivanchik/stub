@@ -1,4 +1,4 @@
-import { greetings } from "./greetings";
+import { greetings } from "./js/greetings";
 import './styles/styles.css';
 import './styles/scss.scss';
 

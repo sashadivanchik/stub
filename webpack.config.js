@@ -61,7 +61,7 @@ module.exports = {
     optimization: optimization(),
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: './src/index.pug',
             minify: {
                 collapseWhitespace: isProd
             }
@@ -109,6 +109,10 @@ module.exports = {
                     outputPath: 'fonts',
                     name: '[name].[ext]',
                 },
+            },
+            { 
+                test: /\.pug$/,
+                use: 'pug-loader'
             },
         ]
     }
