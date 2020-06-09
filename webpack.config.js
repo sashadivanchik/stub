@@ -1,5 +1,4 @@
 const path = require('path');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -54,6 +53,7 @@ module.exports = {
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'build'),
+        // publicPath: "./"
     },
     resolve: {
         extensions: ['.js']
@@ -87,23 +87,24 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/, 
-                use: cssLoaders()           
+                test: /\.css$/,
+                use: cssLoaders()
             },
             {
-                test: /\.s[ac]ss$/, 
-                use: cssLoaders('sass-loader')      
+                test: /\.s[ac]ss$/,
+                use: cssLoaders('sass-loader')
             },
             {
                 test: /\.(png|jpe?g|gif|svg|ico)$/i,
                 loader: 'file-loader',
                 options: {
-                    outputPath: 'images',
+                    outputPath: "./images",
+                    publicPath:"../images",
                     name: '[name].[ext]',
                 },
             },
             {
-                test: /\.(ttf|woff|woff2|eot)$/, 
+                test: /\.(ttf|woff|woff2|eot)$/,
                 loader: 'file-loader',
                 options: {
                     outputPath: 'fonts',
