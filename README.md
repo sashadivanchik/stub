@@ -1,1 +1,1 @@
-simple webpack stub
+weather application
